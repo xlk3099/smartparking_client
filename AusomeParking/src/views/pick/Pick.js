@@ -6,23 +6,24 @@ import {
   StyleSheet,
   Text,
   View,
-  StatusBar
+  TouchableHighlight 
 } from 'react-native';
-import Home from './Home';
+import { Color } from '../utils/theme';
 
-export default class App extends Component {
+export default class Pick extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <StatusBar translucent={true} barStyle='default' />
-        <Home />
-      </View>  
+        <Text >Enter your plate number:</Text>
+      </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
   }
 });
