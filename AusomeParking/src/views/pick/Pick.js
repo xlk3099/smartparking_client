@@ -8,7 +8,7 @@ import {
   View,
   TouchableHighlight 
 } from 'react-native';
-import { Color } from '../utils/theme';
+import { Color } from '../../utils/theme';
 
 export default class Pick extends Component {
   render() {

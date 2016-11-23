@@ -11,13 +11,24 @@ import {
 import { Color } from '../utils/theme';
 
 export default class Home extends Component {
+  static PropTypes = {
+    navigator: React.PropTypes.func.isRequired
+  }
+  
   render() {
+    const { navigator } = this.props;
     return (
       <View style={styles.container}>
-        <TouchableHighlight style={styles.button}>
+        <TouchableHighlight 
+          style={styles.button} 
+          onPress={() => navigator.push({ id: 'park' }) }
+        >
           <Text style={styles.buttonText}>Park my Car</Text>
         </TouchableHighlight>
-        <TouchableHighlight style={styles.button}>
+        <TouchableHighlight 
+          style={styles.button}
+          onPress={() => navigator.push({ id: 'pick' }) }
+        >
           <Text style={styles.buttonText}>Pick my Card</Text>
         </TouchableHighlight>
       </View>

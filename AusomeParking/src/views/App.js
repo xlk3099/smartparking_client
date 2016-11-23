@@ -8,14 +8,14 @@ import {
   View,
   StatusBar
 } from 'react-native';
-import Home from './Home';
+import AppNavigator from './AppNavigator';
 
 export default class App extends Component {
   render() {
     return (
       <View style={styles.container}>
         <StatusBar translucent={true} barStyle='default' />
-        <Home />
+        <AppNavigator />
       </View>  
     );
   }
