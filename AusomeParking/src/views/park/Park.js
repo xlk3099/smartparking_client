@@ -9,12 +9,23 @@ import {
   TouchableHighlight 
 } from 'react-native';
 import { Color } from '../../utils/theme';
+import NavigationBar from 'react-native-navbar';
 
 export default class Park extends Component {
+  
   render() {
     return (
       <View style={styles.container}>
-        <Text >Map to be dislayed</Text>
+        <NavigationBar
+          title={{ title: 'Park my car' }}
+          leftButton={{
+            title: 'back',
+            handler: this.props.navigator.pop
+          }}
+        />
+        <View styles={styles.content}>
+          <Text >Map to be dislayed</Text>
+        </View>
       </View>
     );
   }
@@ -22,6 +33,9 @@ export default class Park extends Component {
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1
+  },
+  center: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center'
