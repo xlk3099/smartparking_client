@@ -3,10 +3,10 @@
 import { Platform } from 'react-native';
 
 export const Color =  {
-  DarkPrimary: '#303F9F',
-  Primary: '#3F51B5',
-  LightPrimary: '#C5CAE9',
-  Accent: '#FFEB3B',
+  DarkPrimary: '#00796B',
+  Primary: '#009688',
+  LightPrimary: '#B2DFDB',
+  Accent: '#FFC107',
   Dark: '#212121',
   DarkGray: '#757575',
   Gray: '#BDBDBD',

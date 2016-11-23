@@ -14,6 +14,7 @@ import NavigationBar from 'react-native-navbar';
 export default class Park extends Component {
   
   render() {
+    const { navigator } = this.props;
     return (
       <View style={styles.container}>
         <NavigationBar
@@ -23,8 +24,14 @@ export default class Park extends Component {
             handler: this.props.navigator.pop
           }}
         />
-        <View styles={styles.content}>
+        <View style={styles.content}>
           <Text >Map to be dislayed</Text>
+          <TouchableHighlight 
+            style={styles.button}
+            onPress={() => navigator.push({ id: 'floowPlan' })}
+          >
+            <Text style={styles.buttonText}>Go</Text>
+          </TouchableHighlight>
         </View>
       </View>
     );
@@ -35,9 +42,16 @@ const styles = StyleSheet.create({
   container: {
     flex: 1
   },
-  center: {
+  content: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center'
+  },
+  button: { 
+    padding: 10,
+    backgroundColor: Color.Primary
+  },
+  buttonText: {
+    color: Color.White
   }
 });
