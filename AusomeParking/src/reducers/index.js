@@ -1,8 +1,8 @@
 'use strict'
 
 import { combineReducers } from 'redux';
-import sample from './sampleReducer';
+import parking from './parking';
 
 export default combineReducers({
-    sample
+    parking
 });
