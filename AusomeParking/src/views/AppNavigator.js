@@ -2,7 +2,6 @@
 
 import React, { Component } from 'react';
 import {
-  AppRegistry,
   StyleSheet,
   Text,
   View,
@@ -11,8 +10,8 @@ import {
 import { Color } from '../utils/theme';
 import Home from './Home';
 import Pick from './pick/Pick';
-import Park from './park/Park';
-import ParkingMap from './park/ParkingMap';
+import IslandMap from './park/IslandMap';
+import CarparkMap from './park/CarparkMap';
 
 export default class AppNavigator extends Component {
   constructor(props) {
@@ -27,9 +26,9 @@ export default class AppNavigator extends Component {
       case 'pick':
         return <Pick navigator={navigator} />;
       case 'park':
-        return <Park navigator={navigator} />;
-      case 'parkingMap':
-        return <ParkingMap navigator={navigator} />;
+        return <IslandMap navigator={navigator} />;
+      case 'carparkMap':
+        return <CarparkMap navigator={navigator} />;
       default:
         return <Home navigator={navigator} />;
     }
@@ -38,7 +37,6 @@ export default class AppNavigator extends Component {
   render() {
     return (
       <Navigator
-        ref={this._setNavigatorRef}
         style={styles.container}
         initialRoute={{ id: 'home' }}
         renderScene={this.renderScene}

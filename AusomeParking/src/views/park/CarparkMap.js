@@ -10,9 +10,9 @@ import {
 } from 'react-native';
 import { Color } from '../../utils/theme';
 import NavigationBar from 'react-native-navbar';
-import CarPark from '../components/CarPark';
+import Carpark from '../components/Carpark';
 
-export default class ParkingMap extends Component {
+export default class CarparkMap extends Component {
   constructor(props) {
     super(props);
   }
@@ -21,13 +21,13 @@ export default class ParkingMap extends Component {
     return (
       <View style={styles.container}>
         <NavigationBar
-          title={{ title: 'Carpark' }}
+          title={{ title: 'Carpark layout' }}
           leftButton={{
             title: 'back',
             handler: this.props.navigator.pop
           }}
         />
-        <CarPark />
+        <Carpark />
       </View>
     );
   }
