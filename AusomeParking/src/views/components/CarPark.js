@@ -10,36 +10,29 @@ import {
 } from 'react-native';
 import { Color } from '../../utils/theme';
 import ParkingLot from './ParkingLot';
+import Road from './Road';
 
-export default class CarPark extends Component {
+export default class Carpark extends Component {
+  static PropTypes = {
+    status: React.PropTypes.object.isRequired
+  }
+
   constructor(props) {
     super(props);
-    this.renderRoad = this.renderRoad.bind(this);
     this.renderLots = this.renderLots.bind(this);
   }
 
-  renderRoad() {
-    return (
-      <View style={styles.road}>
-        <View style={styles.roadEmpty} />
-        <View style={styles.roadMark} />
-        <View style={styles.roadEmpty} />
-        <View style={styles.roadMark} />
-        <View style={styles.roadEmpty} />
-        <View style={styles.roadMark} />
-        <View style={styles.roadEmpty} />
-        <View style={styles.roadMark} />
-        <View style={styles.roadEmpty} />
-      </View>
-    );
-  }
-
   renderLots(startIndex, endIndex) {
+    let { status } = this.props;
     let lots = [];
+    let highlight, available;
     for(let ii = startIndex; ii <= endIndex; ii ++) {
+      highlight = status[ii] && status[ii].highlight;
+      available = status[ii] && status[ii].available;
       lots.push(
         <ParkingLot
-          available={ii < 3}
+          available={available}
+          highlight={highlight}
           key={ii}
           id={ii}
         />
@@ -56,15 +49,15 @@ export default class CarPark extends Component {
   render() {
     return (
       <ScrollView style={styles.content} horizontal={true}>
-        {this.renderLots(0, 9)}
-        {this.renderRoad()}
-        {this.renderLots(10, 19)}
-        {this.renderRoad()}
-        {this.renderLots(20, 29)}
-        {this.renderRoad()}
-        {this.renderLots(30, 39)}
-        {this.renderRoad()}
-        {this.renderLots(40, 49)}
+        {this.renderLots(1, 10)}
+        <Road />
+        {this.renderLots(11, 20)}
+        <Road />
+        {this.renderLots(21, 30)}
+        <Road />
+        {this.renderLots(31, 40)}
+        <Road />
+        {this.renderLots(41, 50)}
       </ScrollView>
     );
   }

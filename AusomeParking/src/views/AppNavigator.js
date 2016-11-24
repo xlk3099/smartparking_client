@@ -9,7 +9,8 @@ import {
 } from 'react-native';
 import { Color } from '../utils/theme';
 import Home from './Home';
-import Pick from './pick/Pick';
+import PlateNumber from './pick/PlateNumber';
+import LocateCar from './pick/LocateCar';
 import IslandMap from './park/IslandMap';
 import CarparkMap from './park/CarparkMap';
 
@@ -24,7 +25,9 @@ export default class AppNavigator extends Component {
       case 'home':
         return <Home navigator={navigator} />;
       case 'pick':
-        return <Pick navigator={navigator} />;
+        return <PlateNumber navigator={navigator} />;
+      case 'locateCar':
+        return <LocateCar navigator={navigator} plateNo={route.plateNo}/>;
       case 'park':
         return <IslandMap navigator={navigator} />;
       case 'carparkMap':

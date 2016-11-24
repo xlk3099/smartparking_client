@@ -13,7 +13,7 @@ import { Color } from '../../utils/theme';
 import NavigationBar from 'react-native-navbar';
 import Button from '../components/Button';
 
-export default class Pick extends Component {
+export default class PlateNumber extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -22,13 +22,14 @@ export default class Pick extends Component {
   }
 
   render() {
+    const { navigator } = this.props;
     return (
       <View style={styles.container}>
         <NavigationBar
           title={{ title: 'Pick my car' }}
           leftButton={{
             title: 'back',
-            handler: this.props.navigator.pop
+            handler: navigator.pop
           }}
         />
         <View style={styles.content}>
@@ -38,7 +39,10 @@ export default class Pick extends Component {
             onChangeText={(text) => this.setState({ text })}
             value={this.state.text}
           />
-          <Button text='Find' />
+          <Button 
+            text='Locate my car' 
+            onPress={() => navigator.push({ id: 'locateCar', plateNo: this.state.text }) }
+          />
         </View>
       </View>
     );
