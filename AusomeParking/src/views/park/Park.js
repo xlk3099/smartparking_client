@@ -2,14 +2,13 @@
 
 import React, { Component } from 'react';
 import {
-  AppRegistry,
   StyleSheet,
   Text,
-  View,
-  TouchableHighlight 
+  View
 } from 'react-native';
 import { Color } from '../../utils/theme';
 import NavigationBar from 'react-native-navbar';
+import Button from '../components/Button';
 
 export default class Park extends Component {
   
@@ -25,13 +24,11 @@ export default class Park extends Component {
           }}
         />
         <View style={styles.content}>
-          <Text >Map to be dislayed</Text>
-          <TouchableHighlight 
-            style={styles.button}
-            onPress={() => navigator.push({ id: 'floowPlan' })}
-          >
-            <Text style={styles.buttonText}>Go</Text>
-          </TouchableHighlight>
+          <Text>Map to be dislayed</Text>
+          <Button
+            onPress={() => navigator.push({ id: 'parkingMap' })}
+            text='Go'
+          />
         </View>
       </View>
     );
