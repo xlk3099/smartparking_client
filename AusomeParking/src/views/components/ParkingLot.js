@@ -6,7 +6,8 @@ import {
   StyleSheet,
   Text,
   View,
-  ScrollView  
+  ScrollView,
+  Animated
 } from 'react-native';
 import { Color } from '../../utils/theme';
 import NavigationBar from 'react-native-navbar';
@@ -15,25 +16,30 @@ export default class ParkingLot extends Component {
 
   static propTypes = {
     available: React.PropTypes.bool.isRequired,
+    highlight: React.PropTypes.bool.isRequired,
     transform: React.PropTypes.array
   }
 
   static defaultProps = {
-    available: true,
+    available: false,
+    highlight: false,
     transform: []
   }
   
   render() {
-    const { available, transform } = this.props;
+    const { available, highlight, transform } = this.props;
     return (
-      <View style={[
+      <Animated.View style={[
         styles.cell,
         {
           backgroundColor: available? Color.LightPrimary : Color.LightGray,
+          borderColor: highlight? 'red' : Color.DarkGray,
+          borderWidth: highlight? 3: 1,
           transform: transform
         }]}
-      > 
-      </View>
+      >
+        <Text>{this.props.id}</Text>
+      </Animated.View>
     );
   }
 }
@@ -42,8 +48,9 @@ const styles = StyleSheet.create({
   cell: {
     width: 60,
     height: 40,
-    borderColor: Color.Dark,
     borderWidth: 1,
-    margin: 1
+    margin: 1,
+    alignItems: 'center',
+    justifyContent: 'center'
   }
 });
