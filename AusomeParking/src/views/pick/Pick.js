@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 import { Color } from '../../utils/theme';
 import NavigationBar from 'react-native-navbar';
+import Button from '../components/Button';
 
 export default class Pick extends Component {
   constructor(props) {
@@ -37,9 +38,7 @@ export default class Pick extends Component {
             onChangeText={(text) => this.setState({ text })}
             value={this.state.text}
           />
-          <TouchableHighlight>
-            <Text>Find</Text>
-          </TouchableHighlight>
+          <Button text='Find' />
         </View>
       </View>
     );

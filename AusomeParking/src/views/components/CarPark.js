@@ -9,10 +9,9 @@ import {
   ScrollView  
 } from 'react-native';
 import { Color } from '../../utils/theme';
-import NavigationBar from 'react-native-navbar';
 import ParkingLot from './ParkingLot';
 
-export default class FloorPlan extends Component {
+export default class CarPark extends Component {
   constructor(props) {
     super(props);
     this.renderRoad = this.renderRoad.bind(this);
@@ -56,34 +55,22 @@ export default class FloorPlan extends Component {
   
   render() {
     return (
-      <View style={styles.container}>
-        <NavigationBar
-          title={{ title: 'Floor plan' }}
-          leftButton={{
-            title: 'back',
-            handler: this.props.navigator.pop
-          }}
-        />
-        <ScrollView style={styles.content} horizontal={true}>
-          {this.renderLots(0, 9)}
-          {this.renderRoad()}
-          {this.renderLots(10, 19)}
-          {this.renderRoad()}
-          {this.renderLots(20, 29)}
-          {this.renderRoad()}
-          {this.renderLots(30, 39)}
-          {this.renderRoad()}
-          {this.renderLots(40, 49)}
-        </ScrollView>
-      </View>
+      <ScrollView style={styles.content} horizontal={true}>
+        {this.renderLots(0, 9)}
+        {this.renderRoad()}
+        {this.renderLots(10, 19)}
+        {this.renderRoad()}
+        {this.renderLots(20, 29)}
+        {this.renderRoad()}
+        {this.renderLots(30, 39)}
+        {this.renderRoad()}
+        {this.renderLots(40, 49)}
+      </ScrollView>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1
-  },
   content: {
     flex: 1,
     padding: 10

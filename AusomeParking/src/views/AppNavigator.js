@@ -12,7 +12,7 @@ import { Color } from '../utils/theme';
 import Home from './Home';
 import Pick from './pick/Pick';
 import Park from './park/Park';
-import FloorPlan from './components/FloorPlan';
+import ParkingMap from './park/ParkingMap';
 
 export default class AppNavigator extends Component {
   constructor(props) {
@@ -28,8 +28,8 @@ export default class AppNavigator extends Component {
         return <Pick navigator={navigator} />;
       case 'park':
         return <Park navigator={navigator} />;
-      case 'floowPlan':
-        return <FloorPlan navigator={navigator} />;
+      case 'parkingMap':
+        return <ParkingMap navigator={navigator} />;
       default:
         return <Home navigator={navigator} />;
     }

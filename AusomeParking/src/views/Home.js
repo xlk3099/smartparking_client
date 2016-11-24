@@ -2,13 +2,12 @@
 
 import React, { Component } from 'react';
 import {
-  AppRegistry,
   StyleSheet,
   Text,
-  View,
-  TouchableHighlight 
+  View
 } from 'react-native';
 import { Color } from '../utils/theme';
+import Button from './components/Button';
 
 export default class Home extends Component {
   static PropTypes = {
@@ -19,18 +18,14 @@ export default class Home extends Component {
     const { navigator } = this.props;
     return (
       <View style={styles.container}>
-        <TouchableHighlight 
-          style={styles.button} 
+        <Button 
           onPress={() => navigator.push({ id: 'park' }) }
-        >
-          <Text style={styles.buttonText}>Park my Car</Text>
-        </TouchableHighlight>
-        <TouchableHighlight 
-          style={styles.button}
+          text='PARK my Car'
+        />
+        <Button 
           onPress={() => navigator.push({ id: 'pick' }) }
-        >
-          <Text style={styles.buttonText}>Pick my Card</Text>
-        </TouchableHighlight>
+          text='PICK my Car'
+        />
       </View>
     );
   }
@@ -41,16 +36,5 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center'
-  },
-  button: {
-    backgroundColor: Color.Primary,
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    marginVertical: 20,
-    borderRadius: 10
-  },
-  buttonText: {
-    color: Color.White,
-    fontSize: 20
   }
 });
