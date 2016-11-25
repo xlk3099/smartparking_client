@@ -5,8 +5,10 @@ Autodesk Hackathon smart parking client
 - install XCode v7.3+
 - install node https://nodejs.org/en/
 - install react-native-cli by `npm install -g react-native-cli`
-- start simulator:
+- 
 ```
 cd AusomeParking
+npm install
+rnpm link
 react-native run-ios
 ```
