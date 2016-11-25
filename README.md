@@ -9,6 +9,5 @@ Autodesk Hackathon smart parking client
 ```
 cd AusomeParking
 npm install
-rnpm link
 react-native run-ios
 ```
