@@ -4,7 +4,8 @@ import React, { Component } from 'react';
 import {
   StyleSheet,
   Text,
-  View
+  View,
+  Animated
 } from 'react-native';
 import { Color } from '../../utils/theme';
 import NavigationBar from 'react-native-navbar';
@@ -13,31 +14,22 @@ import MapView from 'react-native-maps';
 import { status, json } from '../../utils/network';
 import { CarparkCoords, SolarisCoord } from './islandMapData';
 
-const TRANSPORT_API_KEY = 'rSyNcaNvT329rwQYNAc8xw=='; //Accountkey
-const TRANSPORT_API = 'http://datamall2.mytransport.sg/ltaodataservice/CarParkAvailability';
-
-function fetchCarParkInfo() {
-  return fetch(`${TRANSPORT_API}`, {
-    method: 'GET',
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
-      'Accountkey': TRANSPORT_API_KEY
-    }
-  })
-  .then(status)
-  .then(json)
-  .then(json => console.log(json))
-}
-
 export default class IslandMap extends Component {
-
   static propTypes = {
     navigator: React.PropTypes.object.isRequired
   }
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      selectedMarker: null,
+      height: new Animated.Value(0)
+    };
+  }
+
   render() {
     const { navigator } = this.props;
+    const { selectedMarker } = this.state;
     return (
       <View style={styles.container}>
         <NavigationBar
@@ -48,36 +40,51 @@ export default class IslandMap extends Component {
           }}
         />
         <View style={styles.content}>
-          <View style={styles.mapContainer}>
-            <MapView
-              style={styles.mapContainer}
-              loadingEnabled={true}
-              showsUserLocation={true}
-              initialRegion={{
-                latitude: SolarisCoord.lat,
-                longitude: SolarisCoord.lon,
-                latitudeDelta: 0.02,
-                longitudeDelta: 0.02,
-              }}
-              onMarkerSelect={ () => console.log('Selected')}
-            >
-              {CarparkCoords.map(marker => (
-                <MapView.Marker
-                  key={marker.CarParkID}
-                  coordinate={{
-                    latitude: marker.Latitude, 
-                    longitude: marker.Longitude 
-                  }}
-                  title={`${marker.Area} - (${marker.Lots} lots available)`}
-                >
-                </MapView.Marker>
-              ))}
-            </MapView>
-          </View>
-          <Button
-            onPress={() => navigator.push({ id: 'carparkMap' })}
-            text='Locate Empty Lots'
-          />
+          <MapView
+            style={styles.mapContainer}
+            loadingEnabled={true}
+            showsUserLocation={true}
+            initialRegion={{
+              latitude: SolarisCoord.lat,
+              longitude: SolarisCoord.lon,
+              latitudeDelta: 0.02,
+              longitudeDelta: 0.02,
+            }}
+          >
+            {CarparkCoords.map(marker => (
+              <MapView.Marker
+                key={marker.CarParkID}
+                coordinate={{
+                  latitude: marker.Latitude, 
+                  longitude: marker.Longitude 
+                }}
+                onSelect={() => {
+                  this.setState({ selectedMarker: marker });
+                  Animated.timing(
+                    this.state.height, {
+                      toValue: 150,
+                      duration: 300
+                  }).start();
+                }}
+              >
+              </MapView.Marker>
+            ))}
+          </MapView>
+          <Animated.View style={{height: this.state.height}}>
+            <Text style={styles.area}>
+              {selectedMarker? selectedMarker.Area : ''}
+            </Text>
+            <Text style={styles.info}>
+              <Text style={{fontWeight: 'bold'}}>
+                {selectedMarker? selectedMarker.Lots + ' ' : ' '} 
+              </Text>
+               lots available 
+            </Text>
+            <Button 
+              onPress={() => navigator.push({ id: 'carparkMap' })}
+              text='Find empty lots'
+            />
+          </Animated.View>
         </View>
       </View>
     );
@@ -93,15 +100,19 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'stretch'
   },
-  button: {
-    flex: 0,
-    padding: 10,
-    backgroundColor: Color.Primary
-  },
-  buttonText: {
-    color: Color.White
-  },
   mapContainer: {
     flex: 1
+  },
+  area: {
+    marginHorizontal: 10,
+    marginTop: 10,
+    marginBottom: 5,
+    fontSize: 14
+  },
+  info: {
+    marginHorizontal: 10,
+    marginVertical: 5,
+    fontSize: 18,
+    color: Color.DarkPrimary
   }
 });
