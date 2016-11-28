@@ -11,32 +11,38 @@ import {
 import { Color } from '../../utils/theme';
 import NavigationBar from 'react-native-navbar';
 import Carpark from '../components/Carpark';
+import { status, json } from '../../utils/network';
+
+function fetchCarStatus() {
+  return fetch('http://10.148.75.58:8080/parking')
+  .then(status)
+  .then(json)
+}
 
 export default class CarparkMap extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      status: {
-        1: {
-          id: 1,
-          available: true
-        },
-        2: {
-          id: 2,
-          available: true
-        },
-        3: {
-          id: 2,
-          available: true
-        }
-      }
+      status: {}
     };
   }
 
   componentDidMount() {
-
+    this.updateState();
+    this.inteval = setInterval(() => this.updateState(), 1000);
   }
 
+  componentWillUnmount() {
+    clearInterval(this.inteval);
+  }
+
+  updateState() {
+    fetchCarStatus()
+    .then(data => {
+      this.setState({ status: data })
+    });
+  }
+  
   render() {
     return (
       <View style={styles.container}>
