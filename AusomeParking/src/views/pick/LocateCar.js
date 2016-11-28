@@ -30,7 +30,7 @@ export default class LocateCar extends Component {
     fetchCarparkStatus()
     .then(data => {
       Object.keys(data).map((id) => {
-        data[id].highlight = data[id].plateNo === plateNo
+        data[id].highlight = data[id].plateNo.toLowerCase() === plateNo.toLowerCase()
       });
       this.setState({ status: data });
     })
