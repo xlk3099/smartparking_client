@@ -35,7 +35,7 @@ export default class IslandMap extends Component {
   static propTypes = {
     navigator: React.PropTypes.object.isRequired
   }
-  
+
   render() {
     const { navigator } = this.props;
     return (
@@ -59,6 +59,7 @@ export default class IslandMap extends Component {
                 latitudeDelta: 0.02,
                 longitudeDelta: 0.02,
               }}
+              onMarkerSelect={ () => console.log('Selected')}
             >
               {CarparkCoords.map(marker => (
                 <MapView.Marker
@@ -67,8 +68,7 @@ export default class IslandMap extends Component {
                     latitude: marker.Latitude, 
                     longitude: marker.Longitude 
                   }}
-                  title={marker.Area}
-                  description={marker.Lots + ' lots available'}
+                  title={`${marker.Area} - (${marker.Lots} lots available)`}
                 >
                 </MapView.Marker>
               ))}
@@ -76,7 +76,7 @@ export default class IslandMap extends Component {
           </View>
           <Button
             onPress={() => navigator.push({ id: 'carparkMap' })}
-            text='Go'
+            text='Locate Empty Lots'
           />
         </View>
       </View>
