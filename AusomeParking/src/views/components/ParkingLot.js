@@ -46,11 +46,12 @@ export default class ParkingLot extends Component {
 
 const styles = StyleSheet.create({
   cell: {
-    width: 60,
-    height: 40,
+    width: 63,
+    height: 47.5,
     borderWidth: 1,
     margin: 1,
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    opacity: 0.5
   }
 });
