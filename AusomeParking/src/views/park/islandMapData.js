@@ -221,7 +221,7 @@ export const CarparkCoords = [{
     "Development": "JTC",
     "Latitude": SolarisCoord.lat,
     "Longitude": SolarisCoord.lon,
-    "Lots": 12
+    "Lots": 5
   }, {
     "CarParkID": 101,
     "Area": "Fusionopolis",
@@ -238,17 +238,24 @@ export const CarparkCoords = [{
     "Lots": 7
   }, {
     "CarParkID": 103,
-    "Area": "Fusionopolis II",
+    "Area": "National University Hospital",
     "Development": "JTC",
-    "Latitude": 1.2988,
-    "Longitude": 103.7887,
-    "Lots": 22
-  } , {
+    "Latitude": 1.2953,
+    "Longitude": 103.7829,
+    "Lots": 10
+  }, {
     "CarParkID": 104,
     "Area": "Block 71",
     "Development": "JTC",
     "Latitude": 1.2970,
-    "Longitude": 103.7870,
+    "Longitude": 103.7865,
     "Lots": 3
+  }, {
+    "CarParkID": 105,
+    "Area": "MediaCorp",
+    "Development": "Unknown",
+    "Latitude": 1.2913,
+    "Longitude": 103.7920,
+    "Lots": 39
   }
 ];
