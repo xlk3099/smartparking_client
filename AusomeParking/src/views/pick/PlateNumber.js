@@ -38,6 +38,8 @@ export default class PlateNumber extends Component {
             style={styles.textInput}
             onChangeText={(text) => this.setState({ text })}
             value={this.state.text}
+            autoCapitalize='none'
+            autoCorrect={false}
           />
           <Button 
             text='Locate my car' 
