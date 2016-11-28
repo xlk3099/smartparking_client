@@ -70,7 +70,10 @@ export default class IslandMap extends Component {
               </MapView.Marker>
             ))}
           </MapView>
-          <Animated.View style={{height: this.state.height}}>
+          <Animated.View style={{
+            backgroundColor: Color.White, 
+            height: this.state.height
+          }}>
             <Text style={styles.area}>
               {selectedMarker? selectedMarker.Area : ''}
             </Text>

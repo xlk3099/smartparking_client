@@ -33,7 +33,7 @@ export default class PlateNumber extends Component {
           }}
         />
         <View style={styles.content}>
-          <Text >Enter your plate number:</Text>
+          <Text style={styles.desc}>Enter car your plate number:</Text>
           <TextInput
             style={styles.textInput}
             onChangeText={(text) => this.setState({ text })}
@@ -51,14 +51,22 @@ export default class PlateNumber extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
+    backgroundColor: Color.White
   },
   content: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center'
   },
+  desc: {
+    margin: 10,
+    color: Color.DarkPrimary,
+    fontSize: 16
+  },
   textInput: {
+    marginHorizontal: 10,
+    marginVertical: 5,
     height: 40,
     borderColor: Color.Gray, 
     borderWidth: 1
