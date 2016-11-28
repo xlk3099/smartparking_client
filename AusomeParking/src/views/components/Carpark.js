@@ -53,7 +53,7 @@ export default class Carpark extends Component {
   
       <Image
           style={{flex: 1, resizeMode: 'cover',}}
-          source={require('./images/carpark_cropped.gif')}
+          source={require('../../img/carpark_cropped.gif')}
         >
           <View>
             {

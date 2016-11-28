@@ -6,7 +6,9 @@ import {
   StyleSheet,
   Text,
   View,
-  ScrollView  
+  ScrollView,
+  Button,
+  Image
 } from 'react-native';
 import { Color } from '../../utils/theme';
 import ParkingLot from './ParkingLot';
@@ -48,7 +50,31 @@ export default class Carpark extends Component {
   
   render() {
     return (
-      <ScrollView style={styles.content} horizontal={true}>
+  
+      <Image
+          style={{flex: 1, resizeMode: 'cover',}}
+          source={require('../../img/carpark_cropped.gif')}
+        >
+          <View>
+            {
+              Object.keys(this.props.status).map((id) => {
+                let lot = this.props.status[id];
+                return (
+                  <ParkingLot
+                     available={lot.available}
+                     highlight={false}
+                     key={lot.id}
+                     id={lot.id}
+                     transform={[
+                       { translateY: 1 }
+                     ]}
+                   />
+                )
+              })
+            }
+          </View>        
+      </Image>
+     /* <ScrollView style={styles.content} horizontal={true}>
         {this.renderLots(1, 10)}
         <Road />
         {this.renderLots(11, 20)}
@@ -59,6 +85,7 @@ export default class Carpark extends Component {
         <Road />
         {this.renderLots(41, 50)}
       </ScrollView>
+    */
     );
   }
 }
