@@ -33,7 +33,7 @@ export default class Button extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    marginVertical: 10,
+    margin: 10,
     flexDirection: 'row'
   },
   button: {
@@ -41,7 +41,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: Color.Primary,
-    padding: 10
+    padding: 10,
+    borderRadius: 20
   },
   buttonText: {
     color: Color.White,
