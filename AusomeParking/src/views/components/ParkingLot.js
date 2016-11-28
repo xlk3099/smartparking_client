@@ -13,7 +13,6 @@ import { Color } from '../../utils/theme';
 import NavigationBar from 'react-native-navbar';
 
 export default class ParkingLot extends Component {
-
   static propTypes = {
     available: React.PropTypes.bool.isRequired,
     highlight: React.PropTypes.bool.isRequired,
@@ -25,6 +24,32 @@ export default class ParkingLot extends Component {
     highlight: false,
     transform: []
   }
+
+  constructor(props) {
+    super(props);
+    this.highlightColor = new Animated.Value(0)
+  }
+
+  componentDidMount() {
+    this.cycleAnimation();
+  }
+
+  cycleAnimation() {
+    Animated.sequence([
+      Animated.timing(this.highlightColor, {
+        toValue: 0,
+        duration: 400,
+        delay: 300
+      }),
+      Animated.timing(this.highlightColor, {
+        toValue: 1,
+        duration: 400,
+        delay: 300
+      })
+    ]).start(() => {
+      this.cycleAnimation();
+    });
+  }
   
   render() {
     const { available, highlight, transform } = this.props;
@@ -32,13 +57,22 @@ export default class ParkingLot extends Component {
       <Animated.View style={[
         styles.cell,
         {
-          backgroundColor: available? Color.LightPrimary : Color.LightGray,
-          borderColor: highlight? 'red' : Color.DarkGray,
-          borderWidth: highlight? 3: 1,
+          backgroundColor: available? Color.Primary : Color.LightGray,
+          borderColor: this.highlightColor.interpolate({
+            inputRange: [0, 1],
+            outputRange: ['red', 'rgba(0, 0, 0, 0)'],
+          }),
+          borderWidth: highlight? 3: 0,
           transform: transform
         }]}
       >
-        <Text>{this.props.id}</Text>
+        <Text style={{ 
+            color: available? Color.White : Color.Dark, 
+            fontWeight: 'bold' 
+          }}
+        >
+          {this.props.id}
+        </Text>
       </Animated.View>
     );
   }
