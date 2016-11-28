@@ -11,6 +11,7 @@ import {
 import { Color } from '../../utils/theme';
 import NavigationBar from 'react-native-navbar';
 import Carpark from '../components/Carpark';
+import { fetchCarparkStatus } from '../../utils/network';
 
 export default class LocateCar extends Component {
   static propTypes = {
@@ -20,25 +21,19 @@ export default class LocateCar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      status: {
-        1: {
-          id: 1,
-          available: true,
-          highlight: true
-        },
-        2: {
-          id: 2,
-          available: true
-        },
-        3: {
-          id: 2,
-          available: true
-        }
-      }
+      status: {}
     };
   }
 
   componentDidMount() {
+    let { plateNo } = this.props;
+    fetchCarparkStatus()
+    .then(data => {
+      Object.keys(data).map((id) => {
+        data[id].highlight = data[id].plateNo === plateNo
+      });
+      this.setState({ status: data });
+    })
   }
 
   render() {

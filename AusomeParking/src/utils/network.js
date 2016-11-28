@@ -15,3 +15,9 @@ export function error(err) {
   console.log(err.message, err.stack);
   return Promise.reject(err);
 }
+
+export function fetchCarparkStatus() {
+  return fetch('http://10.148.75.58:8080/parking')
+  .then(status)
+  .then(json)
+}
