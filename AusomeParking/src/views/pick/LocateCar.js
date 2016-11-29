@@ -26,11 +26,21 @@ export default class LocateCar extends Component {
   }
 
   componentDidMount() {
+    this.updateState();
+    this.inteval = setInterval(() => this.updateState(), 5000);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.inteval);
+  }
+
+  updateState() {
     let { plateNo } = this.props;
     fetchCarparkStatus()
     .then(data => {
       Object.keys(data).map((id) => {
-        data[id].highlight = data[id].plateNo.toLowerCase() === plateNo.toLowerCase()
+        data[id].highlight = !data[id].available && 
+          data[id].plateNo.toLowerCase() === plateNo.toLowerCase();
       });
       this.setState({ status: data });
     })

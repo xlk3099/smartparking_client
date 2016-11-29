@@ -16,59 +16,64 @@ export default class ParkingLot extends Component {
   static propTypes = {
     available: React.PropTypes.bool.isRequired,
     highlight: React.PropTypes.bool.isRequired,
-    transform: React.PropTypes.array,
     handicapped: React.PropTypes.bool
   }
 
   static defaultProps = {
     available: false,
     highlight: false,
-    transform: [],
     handicapped: false
   }
 
   constructor(props) {
     super(props);
-    this.highlightColor = new Animated.Value(0)
+    this.color = new Animated.Value(0);
   }
 
   componentDidMount() {
-    this.cycleAnimation();
+    if(this.props.highlight) this.cycleAnimation();
+  }
+
+  shouldComponentUpdate(nextProps) {
+    return this.props.available !== nextProps.available ||
+      this.props.highlight !== nextProps.highlight ||
+      this.props.handicapped !== nextProps.handicapped;
+   }
+
+  componentDidUpdate() {
+    if(this.props.highlight) this.cycleAnimation();
   }
 
   cycleAnimation() {
     Animated.sequence([
-      Animated.timing(this.highlightColor, {
-        toValue: 0,
-        duration: 300,
-        delay: 150
-      }),
-      Animated.timing(this.highlightColor, {
+      Animated.timing(this.color, {
         toValue: 1,
         duration: 300,
         delay: 300
+      }),
+      Animated.timing(this.color, {
+        toValue: 0,
+        duration: 300,
+        delay: 150
       })
     ]).start(() => {
-      this.cycleAnimation();
+      if(this.props.highlight) this.cycleAnimation();
     });
   }
   
   render() {
-    const { available, highlight, transform } = this.props;
+    const { available, handicapped } = this.props;
     return (
       <Animated.View style={[
         styles.cell,
         {
-          backgroundColor: available? Color.Primary : Color.LightGray,
-          borderColor: this.highlightColor.interpolate({
+          backgroundColor: this.color.interpolate({
             inputRange: [0, 1],
-            outputRange: ['red', 'rgba(0, 0, 0, 0)'],
-          }),
-          borderWidth: highlight? 3: 0,
-          transform: transform
+            outputRange: [available? Color.Primary : Color.Accent, 'rgba(0, 0, 0, 0)'],
+          })
         }]}
       >
-        {this.props.handicapped? 
+        {handicapped? 
           <Image 
             source={require('../../img/handi.png')} 
             resizeMode='contain'

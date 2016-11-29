@@ -33,11 +33,12 @@ export default class PlateNumber extends Component {
           }}
         />
         <View style={styles.content}>
-          <Text style={styles.desc}>Enter car your plate number:</Text>
+          <Text style={styles.desc}>Enter your car plate number:</Text>
           <TextInput
             style={styles.textInput}
             onChangeText={(text) => this.setState({ text })}
             value={this.state.text}
+            defaultValue='9CA300'
             autoCapitalize='none'
             autoCorrect={false}
           />
