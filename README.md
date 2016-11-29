@@ -15,8 +15,7 @@ cd AusomeParking
 npm install
 react-native run-ios
 ```
-
-![Home](/screenshots/1.png)
-![Park](/screenshots/2.png)
-![Park 2](/screenshots/3.png)
-![Pick](/screenshots/4.png)
+<img src="/screenshots/1.png" width="300">
+<img src="/screenshots/2.png" width="300">
+<img src="/screenshots/3.png" width="300">
+<img src="/screenshots/4.png" width="300">
