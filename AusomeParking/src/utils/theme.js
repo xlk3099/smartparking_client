@@ -6,7 +6,7 @@ export const Color =  {
   DarkPrimary: '#00796B',
   Primary: '#009688',
   LightPrimary: '#B2DFDB',
-  Accent: '#FFC107',
+  Accent: '#F57C00',
   Dark: '#212121',
   DarkGray: '#757575',
   Gray: '#BDBDBD',

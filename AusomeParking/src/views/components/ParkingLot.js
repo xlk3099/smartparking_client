@@ -40,12 +40,12 @@ export default class ParkingLot extends Component {
     Animated.sequence([
       Animated.timing(this.highlightColor, {
         toValue: 0,
-        duration: 400,
-        delay: 300
+        duration: 300,
+        delay: 150
       }),
       Animated.timing(this.highlightColor, {
         toValue: 1,
-        duration: 400,
+        duration: 300,
         delay: 300
       })
     ]).start(() => {

@@ -78,7 +78,9 @@ const styles = StyleSheet.create({
     height: 100,
     backgroundColor: Color.LightGray,
     opacity: 0.8,
-    padding: 10
+    padding: 10,
+    borderWidth: 1,
+    borderColor: Color.Gray
   },
   legendItem: {
     flexDirection: 'row',
