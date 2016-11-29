@@ -26,7 +26,6 @@ export default class CarparkMap extends Component {
   }
 
   componentDidMount() {
-    
     this.updateState();
     this.inteval = setInterval(() => this.updateState(), 1000);
   }

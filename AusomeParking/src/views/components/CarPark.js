@@ -75,10 +75,11 @@ const styles = StyleSheet.create({
     bottom: 0,
     right: 0,
     width: 150,
-    height: 100,
+    height: 80,
     backgroundColor: Color.LightGray,
     opacity: 0.8,
-    padding: 10,
+    paddingHorizontal: 5,
+    paddingVertical: 10,
     borderWidth: 1,
     borderColor: Color.Gray
   },
@@ -91,12 +92,12 @@ const styles = StyleSheet.create({
     height: 20,
     borderWidth: 1,
     borderColor: Color.Dark,
-    margin: 10
+    margin: 5
   },
   free: {
     backgroundColor: Color.Primary
   },
   busy: {
-    backgroundColor: Color.LightGray
+    backgroundColor: Color.Accent
   }
 });
