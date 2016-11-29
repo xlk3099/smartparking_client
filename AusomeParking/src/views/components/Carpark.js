@@ -47,6 +47,16 @@ export default class Carpark extends Component {
           })
           }    
         </Image>
+        <View style={styles.legend}>
+          <View style={styles.legendItem}>
+            <View style={[styles.box, styles.free]} />
+            <Text>available</Text>
+          </View>
+          <View style={styles.legendItem}>
+            <View style={[styles.box, styles.busy]} />
+            <Text>occupied</Text>
+          </View>
+        </View>
       </View>
     );
   }
@@ -59,6 +69,32 @@ const styles = StyleSheet.create({
   },
   floorPlan: {
     flex: 1,
+  },
+  legend: {
+    position: 'absolute',
+    bottom: 0,
+    right: 0,
+    width: 150,
+    height: 100,
+    backgroundColor: Color.LightGray,
+    opacity: 0.8,
+    padding: 10
+  },
+  legendItem: {
+    flexDirection: 'row',
+    alignItems: 'center'
+  },
+  box: {
+    width: 20,
+    height: 20,
+    borderWidth: 1,
+    borderColor: Color.Dark,
+    margin: 10
+  },
+  free: {
+    backgroundColor: Color.Primary
+  },
+  busy: {
+    backgroundColor: Color.LightGray
   }
-
 });
