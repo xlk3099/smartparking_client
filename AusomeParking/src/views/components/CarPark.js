@@ -35,6 +35,7 @@ export default class Carpark extends Component {
             let lot = this.props.status[id];
             return (
               <ParkingLot
+                handicapped={id === '1'}
                 available={lot.available}
                 highlight={lot.highlight}
                 key={lot.id}

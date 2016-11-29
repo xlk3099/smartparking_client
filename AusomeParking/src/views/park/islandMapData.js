@@ -221,7 +221,7 @@ export const CarparkCoords = [{
     "Development": "JTC",
     "Latitude": SolarisCoord.lat,
     "Longitude": SolarisCoord.lon,
-    "Lots": 5
+    "Lots": 3
   }, {
     "CarParkID": 101,
     "Area": "Fusionopolis",
@@ -249,7 +249,7 @@ export const CarparkCoords = [{
     "Development": "JTC",
     "Latitude": 1.2970,
     "Longitude": 103.7865,
-    "Lots": 3
+    "Lots": 5
   }, {
     "CarParkID": 105,
     "Area": "MediaCorp",
