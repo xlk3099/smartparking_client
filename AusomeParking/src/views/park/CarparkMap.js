@@ -6,12 +6,16 @@ import {
   StyleSheet,
   Text,
   View,
-  ScrollView  
+  ScrollView,
+  Alert
 } from 'react-native';
 import { Color } from '../../utils/theme';
 import NavigationBar from 'react-native-navbar';
 import Carpark from '../components/Carpark';
 import { fetchCarparkStatus } from '../../utils/network';
+
+const MyPlateNo = '9CA300';
+const HandicappedLotID = '1';
 
 export default class CarparkMap extends Component {
   constructor(props) {
@@ -22,6 +26,7 @@ export default class CarparkMap extends Component {
   }
 
   componentDidMount() {
+    
     this.updateState();
     this.inteval = setInterval(() => this.updateState(), 1000);
   }
@@ -32,7 +37,28 @@ export default class CarparkMap extends Component {
 
   updateState() {
     fetchCarparkStatus()
-    .then(data => this.setState({ status: data }) );
+    .then(data => {
+      let myNo = MyPlateNo.toLowerCase();
+      let status = this.state.status;
+      let prevNo = status[HandicappedLotID] && status[HandicappedLotID].plateNo.toLowerCase();
+      let newNo = data[HandicappedLotID] && data[HandicappedLotID].plateNo.toLowerCase();
+      if(prevNo !== newNo && newNo === myNo) {
+        clearInterval(this.inteval);
+        Alert.alert(
+          'Illegal Parking',
+          'You have parked in a handicapped lot!',
+          [
+            {
+              text: 'OK', 
+              onPress: () => {
+                this.inteval = setInterval(() => this.updateState(), 1000);
+              }
+            },
+          ]
+        );
+      }
+      this.setState({ status: data });
+    });
   }
   
   render() {

@@ -6,8 +6,8 @@ import {
   StyleSheet,
   Text,
   View,
-  ScrollView,
-  Animated
+  Animated,
+  Image
 } from 'react-native';
 import { Color } from '../../utils/theme';
 import NavigationBar from 'react-native-navbar';
@@ -16,13 +16,15 @@ export default class ParkingLot extends Component {
   static propTypes = {
     available: React.PropTypes.bool.isRequired,
     highlight: React.PropTypes.bool.isRequired,
-    transform: React.PropTypes.array
+    transform: React.PropTypes.array,
+    handicapped: React.PropTypes.bool
   }
 
   static defaultProps = {
     available: false,
     highlight: false,
-    transform: []
+    transform: [],
+    handicapped: false
   }
 
   constructor(props) {
@@ -66,6 +68,17 @@ export default class ParkingLot extends Component {
           transform: transform
         }]}
       >
+        {this.props.handicapped? 
+          <Image 
+            source={require('../../img/handi.png')} 
+            resizeMode='contain'
+            style={{
+              opacity: 1,
+              width: 24,
+              height: 24
+            }}
+          /> : <View />
+        }
         <Text style={{ 
             color: available? Color.White : Color.Dark, 
             fontWeight: 'bold' 
@@ -86,6 +99,7 @@ const styles = StyleSheet.create({
     margin: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    opacity: 0.5
+    opacity: 0.8,
+    flexDirection: 'row'
   }
 });

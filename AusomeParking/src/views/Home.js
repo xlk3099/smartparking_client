@@ -26,10 +26,16 @@ export default class Home extends Component {
           style={styles.hero} 
           source={require('../img/parking.jpg')} 
         />
-        <Text style={styles.title}>
-          Welcome to 
-          <Text style={styles.branding}> auSome Parking!</Text>
-        </Text>
+        <View style={styles.header}>
+          <Text style={styles.title}>
+            Good Morning  
+            <Text style={styles.branding}> Luke</Text>,
+          </Text>
+          <Text style={styles.subtitle}>
+            Your car registration number is 
+            <Text style={styles.plate}> 9CA300</Text>,
+          </Text>
+        </View>
         <Button 
           onPress={() => navigator.push({ id: 'park' }) }
           text='PARK my Car'
@@ -50,21 +56,32 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center'
   },
+  header: {
+    marginBottom: 240
+  },
   title: {
+    marginVertical: 5,
     fontSize: 24,
-    marginBottom: 300
+    textAlign: 'center'
   },
   branding: {
-    fontWeight: 'bold',
-    color: Color.DarkPrimary
+    
+  },
+  subtitle: {
+    marginVertical: 5,
+    fontSize: 18,
+    textAlign: 'center'
+  },
+  plate: {
+    color: Color.Primary,
+    fontWeight: 'bold'
   },
   hero: {
     position: 'absolute',
     left: 0,
     top: 0,
     height: height,
-    opacity: 0.5,
-    backgroundColor: Color.Accent
+    opacity: 0.2
   },
   or: {
     fontSize: 18
