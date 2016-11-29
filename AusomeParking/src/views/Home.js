@@ -22,10 +22,13 @@ export default class Home extends Component {
     const { navigator } = this.props;
     return (
       <View style={styles.container}>
-        <Image 
-          style={styles.hero} 
-          source={require('../img/parking.jpg')} 
-        />
+        <View style={styles.heroContainer}>
+          <Image 
+            style={styles.hero} 
+            source={require('../img/parking.jpg')}
+          />
+          <View style={styles.heroOverlay} />
+        </View>
         <View style={styles.header}>
           <Text style={styles.title}>
             Good Morning  
@@ -57,7 +60,9 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   header: {
-    marginBottom: 240
+    marginBottom: 150,
+    alignItems: 'center',
+    flexDirection: 'column'
   },
   title: {
     marginVertical: 5,
@@ -73,15 +78,27 @@ const styles = StyleSheet.create({
     textAlign: 'center'
   },
   plate: {
-    color: Color.Primary,
+    color: Color.Accent,
     fontWeight: 'bold'
   },
-  hero: {
+  heroContainer: {
     position: 'absolute',
     left: 0,
+    right: 0,
     top: 0,
-    height: height,
-    opacity: 0.2
+    bottom: 0
+  },
+  hero: {
+    flex: 1
+  },
+  heroOverlay: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    top: 0,
+    bottom: 0,
+    backgroundColor: Color.LightGray,
+    opacity: .8
   },
   or: {
     fontSize: 18
