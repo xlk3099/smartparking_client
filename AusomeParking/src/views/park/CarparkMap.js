@@ -15,7 +15,7 @@ import Carpark from '../components/Carpark';
 import { fetchCarparkStatus } from '../../utils/network';
 
 const MyPlateNo = '9CA300';
-const HandicappedLotID = '1';
+const HandicappedLotID = '3';
 
 export default class CarparkMap extends Component {
   constructor(props) {

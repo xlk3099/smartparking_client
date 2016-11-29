@@ -14,6 +14,8 @@ import { Color } from '../../utils/theme';
 import ParkingLot from './ParkingLot';
 import Road from './Road';
 
+const HandicappedLotID = '3';
+
 export default class Carpark extends Component {
   static PropTypes = {
     status: React.PropTypes.object.isRequired
@@ -35,7 +37,7 @@ export default class Carpark extends Component {
             let lot = this.props.status[id];
             return (
               <ParkingLot
-                handicapped={id === '1'}
+                handicapped={id === HandicappedLotID}
                 available={lot.available}
                 highlight={lot.highlight}
                 key={lot.id}
